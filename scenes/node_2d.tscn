@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://rtubar74irss"]
+
+[node name="game" type="Node2D"]
+
+[node name="container-network-info" type="VBoxContainer" parent="."]
+offset_right = 174.0
+offset_bottom = 243.0
+
+[node name="label-peer-id" type="Label" parent="container-network-info"]
+layout_mode = 2
+text = "<unique-peer-id>"
+
+[node name="menu" type="VBoxContainer" parent="."]
+offset_top = 204.0
+offset_right = 119.0
+offset_bottom = 365.0
+
+[node name="host" type="Button" parent="menu"]
+layout_mode = 2
+text = "<host>"
+
+[node name="join" type="Button" parent="menu"]
+layout_mode = 2
+text = "<join>"
