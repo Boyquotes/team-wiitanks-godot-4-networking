@@ -20,6 +20,10 @@ texture = SubResource("GradientTexture1D_7qsht")
 offset_right = 174.0
 offset_bottom = 243.0
 
+[node name="network-role" type="Label" parent="container-network-info"]
+layout_mode = 2
+text = "<your-role>"
+
 [node name="label-peer-id" type="Label" parent="container-network-info"]
 layout_mode = 2
 text = "<unique-peer-id>"
@@ -52,3 +56,7 @@ grow_vertical = 0
 placeholder_text = "<message-input>"
 alignment = 1
 expand_to_text_length = true
+
+[connection signal="pressed" from="container-menu/button-host" to="." method="_on_buttonhost_pressed"]
+[connection signal="pressed" from="container-menu/button-join" to="." method="_on_buttonjoin_pressed"]
+[connection signal="text_submitted" from="message-input" to="." method="_on_messageinput_text_submitted"]
