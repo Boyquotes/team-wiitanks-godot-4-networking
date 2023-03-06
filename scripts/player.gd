@@ -2,6 +2,9 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 
+func _ready():
+	get_node("label-name").text = str(name)
+
 # update input and movement every physics tick
 func _physics_process(_delta):
 	var velocityVec = Vector2()

@@ -6,5 +6,14 @@
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_fbqw8")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="sprite-box" type="Sprite2D" parent="."]
 texture = ExtResource("1_puymi")
+
+[node name="label-name" type="Label" parent="."]
+offset_left = -56.0
+offset_top = -88.0
+offset_right = 54.0
+offset_bottom = -65.0
+text = "<player name>"
+horizontal_alignment = 1
+vertical_alignment = 1
