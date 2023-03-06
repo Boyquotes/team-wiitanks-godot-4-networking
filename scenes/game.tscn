@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://rtubar74irss"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_v7up0"]
+
+[sub_resource type="Gradient" id="Gradient_ma7mq"]
+colors = PackedColorArray(0, 0.273376, 0, 1, 0.336974, 0.67554, 0.406626, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7qsht"]
+gradient = SubResource("Gradient_ma7mq")
+
+[node name="node-2d-main" type="Node2D"]
+script = ExtResource("1_v7up0")
+
+[node name="background" type="TextureRect" parent="."]
+offset_right = 1156.0
+offset_bottom = 635.0
+texture = SubResource("GradientTexture1D_7qsht")
+
+[node name="container-network-info" type="VBoxContainer" parent="."]
+offset_right = 174.0
+offset_bottom = 243.0
+
+[node name="label-peer-id" type="Label" parent="container-network-info"]
+layout_mode = 2
+text = "<unique-peer-id>"
+
+[node name="container-menu" type="VBoxContainer" parent="."]
+offset_top = 204.0
+offset_right = 119.0
+offset_bottom = 365.0
+
+[node name="button-host" type="Button" parent="container-menu"]
+layout_mode = 2
+text = "<host>"
+
+[node name="button-join" type="Button" parent="container-menu"]
+layout_mode = 2
+text = "<join>"
+
+[node name="message-input" type="LineEdit" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 480.0
+offset_top = 602.0
+offset_right = 634.766
+offset_bottom = 633.0
+grow_horizontal = 2
+grow_vertical = 0
+placeholder_text = "<message-input>"
+alignment = 1
+expand_to_text_length = true
