@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://rtubar74irss"]
+[gd_scene load_steps=5 format=3 uid="uid://rtubar74irss"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_v7up0"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="2_7rg2d"]
 
 [sub_resource type="Gradient" id="Gradient_ma7mq"]
 colors = PackedColorArray(0, 0.273376, 0, 1, 0.336974, 0.67554, 0.406626, 1)
@@ -56,6 +57,8 @@ grow_vertical = 0
 placeholder_text = "<message-input>"
 alignment = 1
 expand_to_text_length = true
+
+[node name="player" parent="." instance=ExtResource("2_7rg2d")]
 
 [connection signal="pressed" from="container-menu/button-host" to="." method="_on_buttonhost_pressed"]
 [connection signal="pressed" from="container-menu/button-join" to="." method="_on_buttonjoin_pressed"]
