@@ -31,7 +31,7 @@ func _on_buttonhost_pressed():
 		func (new_peer_id):
 			await get_tree().create_timer(1).timeout
 			# 
-			rpc("add_newly_connected_player_character")
+			rpc("add_newly_connected_player_character", new_peer_id)
 			# call func adding characters of previously connected machines of machine at new_peer_id
 			# and give connectedPeerIds as an argument
 			rpc_id(new_peer_id, "add_previously_connected_player_characters", connected_peer_ids)
@@ -55,6 +55,8 @@ func _on_buttonjoin_pressed():
 func add_player_character(peer_id):
 	connected_peer_ids.append(peer_id)
 	var player_character = preload("res://scenes/player.tscn").instantiate()
+	# each id controls its own character, is its own multiplayer authority
+	player_character.set_multiplayer_authority(peer_id)
 	add_child(player_character)
 
 # remotely-callable function 
