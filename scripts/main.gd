@@ -6,9 +6,14 @@ var multiplayerPeer = ENetMultiplayerPeer.new()
 # info on what computer to connect to. for development, just loopback to self.
 # port number isn't too important unless reserved (past first 1024 is safe)
 const PORT = 9999
-const ADDRESS = "localhost"
+const TEST_ADDRESS = "127.0.0.1"
+const TESTING_LOCAL = false
 
 var connected_peer_ids = []
+
+func _ready():
+	# show user their machine's private IP for connection purposes
+	get_node("container-menu/ip-display-label").text = "IP: " + str(IP.get_local_addresses()[7])
 
 func _on_buttonhost_pressed():
 	# hide buttons, show this machine is a server
@@ -41,15 +46,23 @@ func _on_buttonhost_pressed():
 	)
 
 func _on_buttonjoin_pressed():
-	# hide buttons, show this machine is a client
-	get_node("container-network-info/network-role").text = "Client"
-	get_node("container-menu").visible = false
 	
-	# instruct multiplayerPeer to make a client, connect to ADDRESS and listen on PORT
-	multiplayerPeer.create_client(ADDRESS, PORT)
+	var stored_ip
+	if TESTING_LOCAL:
+		stored_ip = TEST_ADDRESS
+	else:
+		stored_ip = get_node("container-menu/ip-enter-field").text
 	
-	multiplayer.multiplayer_peer = multiplayerPeer
-	get_node("container-network-info/label-peer-id").text = str(multiplayer.get_unique_id())
+	if stored_ip.is_valid_ip_address():
+		# hide buttons, show this machine is a client
+		get_node("container-network-info/network-role").text = "Client"
+		get_node("container-menu").visible = false
+		
+		# instruct multiplayerPeer to make a client, connect to ADDRESS and listen on PORT
+		multiplayerPeer.create_client(stored_ip, PORT)
+		
+		multiplayer.multiplayer_peer = multiplayerPeer
+		get_node("container-network-info/label-peer-id").text = str(multiplayer.get_unique_id())
 
 # when called, instantiate the player scene, add instance to scene
 func add_player_character(peer_id):
@@ -68,6 +81,3 @@ func add_newly_connected_player_character(new_peer_id):
 func add_previously_connected_player_characters(peer_ids):
 	for peer_id in peer_ids:
 		add_player_character(peer_id)
-
-func _on_messageinput_text_submitted(new_text):
-	pass # Replace with function body.

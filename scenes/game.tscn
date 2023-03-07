@@ -30,33 +30,24 @@ text = "<unique-peer-id>"
 
 [node name="container-menu" type="VBoxContainer" parent="."]
 offset_top = 204.0
-offset_right = 119.0
+offset_right = 184.0
 offset_bottom = 365.0
+
+[node name="ip-display-label" type="Label" parent="container-menu"]
+layout_mode = 2
+text = "<private-ip>"
+horizontal_alignment = 1
 
 [node name="button-host" type="Button" parent="container-menu"]
 layout_mode = 2
 text = "<host>"
 
+[node name="ip-enter-field" type="LineEdit" parent="container-menu"]
+layout_mode = 2
+
 [node name="button-join" type="Button" parent="container-menu"]
 layout_mode = 2
 text = "<join>"
 
-[node name="message-input" type="LineEdit" parent="."]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 480.0
-offset_top = 602.0
-offset_right = 634.766
-offset_bottom = 633.0
-grow_horizontal = 2
-grow_vertical = 0
-placeholder_text = "<message-input>"
-alignment = 1
-expand_to_text_length = true
-
 [connection signal="pressed" from="container-menu/button-host" to="." method="_on_buttonhost_pressed"]
 [connection signal="pressed" from="container-menu/button-join" to="." method="_on_buttonjoin_pressed"]
-[connection signal="text_submitted" from="message-input" to="." method="_on_messageinput_text_submitted"]
