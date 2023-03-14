@@ -13,7 +13,7 @@ var connected_peer_ids = []
 
 func _ready():
 	# show user their machine's private IP for connection purposes
-	get_node("container-menu/ip-display-label").text = "IP: " + str(IP.get_local_addresses()[7])
+	get_node("container-menu/ip-display-label").text = str(IP.get_local_addresses()[5])
 
 func _on_buttonhost_pressed():
 	# hide buttons, show this machine is a server
