@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dof5nawjyckvi"]
+
+[ext_resource type="Texture2D" uid="uid://vwsewe7gk3c1" path="res://assets/ball.png" id="1_130m5"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_vmv6g"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+
+[node name="ball" type="Sprite2D"]
+texture = ExtResource("1_130m5")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_vmv6g")
