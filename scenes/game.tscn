@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://rtubar74irss"]
+[gd_scene load_steps=5 format=3 uid="uid://rtubar74irss"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_v7up0"]
-[ext_resource type="PackedScene" uid="uid://dof5nawjyckvi" path="res://scenes/ball.tscn" id="2_d4d5n"]
-[ext_resource type="Script" path="res://scenes/ball.gd" id="3_u8of0"]
+[ext_resource type="PackedScene" uid="uid://c4d6lrob6hkjb" path="res://scenes/ball.tscn" id="2_d4d5n"]
 
 [sub_resource type="Gradient" id="Gradient_ma7mq"]
 colors = PackedColorArray(0, 0.273376, 0, 1, 0.336974, 0.67554, 0.406626, 1)
@@ -17,6 +16,9 @@ script = ExtResource("1_v7up0")
 offset_right = 1156.0
 offset_bottom = 635.0
 texture = SubResource("GradientTexture1D_7qsht")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_d4d5n")]
+position = Vector2(114, 118)
 
 [node name="container-network-info" type="VBoxContainer" parent="."]
 offset_right = 174.0
@@ -50,10 +52,6 @@ layout_mode = 2
 [node name="button-join" type="Button" parent="container-menu"]
 layout_mode = 2
 text = "<join>"
-
-[node name="ball" parent="." instance=ExtResource("2_d4d5n")]
-position = Vector2(446, 290)
-script = ExtResource("3_u8of0")
 
 [connection signal="pressed" from="container-menu/button-host" to="." method="_on_buttonhost_pressed"]
 [connection signal="pressed" from="container-menu/button-join" to="." method="_on_buttonjoin_pressed"]
