@@ -1,19 +1,33 @@
-extends CharacterBody2D
-
+extends RigidBody2D
 
 @export var period:int = 100
 @export var amplitude:int = 100
-var x_midpoint:float
+
+@onready var age_label:Label = get_node("age-text")
+@onready var viewport_x:int = get_viewport().size.x
+@onready var viewport_y:int = get_viewport().size.y
 
 func _ready():
-	x_midpoint = get_viewport().size.x / 2
-	position = Vector2(x_midpoint, get_viewport().size.y / 2)
+	# initialize self in a random position on the board
+	var random = RandomNumberGenerator.new()
+	random.randomize()
+	position = Vector2(viewport_x * random.randf(), viewport_y * random.randf())
 
 func _physics_process(delta):
+	# move in a sinusoidal fashion along the x axis
+	var msecs:int = Time.get_ticks_msec();
+	#var new_pos:float = sin(msecs / period) * amplitude
+	#position.x = x_midpoint + new_pos
 	
-	var time:float = Time.get_ticks_msec() / period;
-	var newPos:float = sin(time) * amplitude
-	#print(newPos)
+	# wrap x and y axis around like pac-man
+	if position.x > viewport_x:
+		linear_velocity.x = -200
+	elif position.x < 0:
+		linear_velocity.x = 200
 	
-	position.x = x_midpoint + newPos
+	if position.y > viewport_y:
+		linear_velocity.y = -1000
+	
+	# show ball's age in seconds
+	age_label.text = str(msecs / 1000);
 	
