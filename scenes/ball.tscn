@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4d6lrob6hkjb"]
+
+[ext_resource type="Texture2D" uid="uid://vwsewe7gk3c1" path="res://assets/ball.png" id="1_130m5"]
+[ext_resource type="Script" path="res://scripts/ball.gd" id="1_rr04t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sfmjd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4v6pb"]
+font_size = 12
+font_color = Color(0, 0, 0, 1)
+outline_size = 2
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ynf67"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath(".:linear_velocity")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath(".:angular_velocity")
+properties/2/spawn = true
+properties/2/sync = true
+properties/3/path = NodePath(".:inertia")
+properties/3/spawn = true
+properties/3/sync = true
+
+[node name="ball-scene" type="RigidBody2D"]
+script = ExtResource("1_rr04t")
+period = 200
+amplitude = 500
+
+[node name="visual-sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.162109, 0.162109)
+texture = ExtResource("1_130m5")
+
+[node name="collider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_sfmjd")
+
+[node name="age-text" type="Label" parent="."]
+offset_left = -9.0
+offset_top = -11.0
+offset_right = 9.0
+offset_bottom = 12.0
+text = "1"
+label_settings = SubResource("LabelSettings_4v6pb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_ynf67")

@@ -1,11 +1,16 @@
 extends CharacterBody2D
 
+# movement speed of the player
 const SPEED = 300.0
 
 func _ready():
 	name = str(get_multiplayer_authority())
 	get_node("label-name").text = str(name)
-	position = Vector2(get_viewport().size.x / 2, get_viewport().size.y / 2)
+	
+	# initialize self in a random position
+	var random = RandomNumberGenerator.new()
+	random.randomize()
+	position = Vector2(get_viewport().size.x * random.randf(), get_viewport().size.y * random.randf())
 
 # update input and movement every physics tick
 func _physics_process(_delta):
