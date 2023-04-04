@@ -1,17 +1,19 @@
 extends RigidBody2D
 
-@export var period:int = 100
-@export var amplitude:int = 100
+@export var period: int = 100
+@export var amplitude: int = 100
 
-@onready var age_label:Label = get_node("age-text")
-@onready var viewport_x:int = get_viewport().size.x
-@onready var viewport_y:int = get_viewport().size.y
+@onready var age_label: Label = get_node("age-text")
+@onready var viewport_x: int = get_viewport().size.x
+@onready var viewport_y: int = get_viewport().size.y
+
 
 func _ready():
 	# initialize self in a random position on the board
-	var random = RandomNumberGenerator.new()
+	var random := RandomNumberGenerator.new()
 	random.randomize()
 	position = Vector2(viewport_x * random.randf(), viewport_y * random.randf())
+
 
 func _physics_process(delta):
 	# move in a sinusoidal fashion along the x axis
@@ -30,4 +32,4 @@ func _physics_process(delta):
 	
 	# show ball's age in seconds
 	age_label.text = str(msecs / 1000);
-	
+
