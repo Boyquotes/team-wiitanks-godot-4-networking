@@ -70,7 +70,7 @@ func _on_buttonjoin_pressed():
 		get_node("container-network-info/label-peer-id").text = str(multiplayer.get_unique_id())
 
 
-# when called, instantiate the player scene, add instance to scene
+# when called, instantiate the player scene for a network ID, add instance to scene
 func add_player_character(peer_id: int) -> void:
 	connected_peer_ids.append(peer_id)
 	var player_character := preload("res://scenes/player.tscn").instantiate()
@@ -84,7 +84,7 @@ func add_player_character(peer_id: int) -> void:
 func add_newly_connected_player_character(new_peer_id: int) -> void:
 	add_player_character(new_peer_id)
 
-
+# given array of peer ids, add each as a character
 @rpc
 func add_previously_connected_player_characters(peer_ids: Array) -> void:
 	for peer_id in peer_ids:

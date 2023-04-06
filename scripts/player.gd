@@ -5,6 +5,7 @@ const SPEED = 300.0
 
 
 func _ready():
+	# get network authority (self) and display on character.
 	name = str(get_multiplayer_authority())
 	get_node("label-name").text = str(name)
 	
@@ -17,7 +18,9 @@ func _ready():
 # update input and movement every physics tick
 func _physics_process(_delta):
 	
-	# allow movement if this node's unique id matches that of the multiplayer authority
+	# allow movement if this node's unique id matches that of the multiplayer authority.
+	# since each machine is its own network authority of its own player, only they 
+	# can move their player.
 	if is_multiplayer_authority():
 		var velocityVec := Vector2()
 
@@ -41,9 +44,11 @@ func _physics_process(_delta):
 		set_velocity(velocityVec)
 		move_and_slide()
 		
+		# communicate this player's new position to all other machines
 		rpc("remote_set_position", global_position)
 
 
+# accept whatever position the network authority says this player should be at.
 @rpc("unreliable")
 func remote_set_position(authority_position) -> void:
 	global_position = authority_position
