@@ -1,3 +1,4 @@
+class_name Game
 extends Node2D
 
 # info on what computer to connect to. for development, just loopback to self.

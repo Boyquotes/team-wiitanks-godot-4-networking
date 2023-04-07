@@ -1,3 +1,4 @@
+class_name Ball
 extends RigidBody2D
 
 @export var period: int = 100
