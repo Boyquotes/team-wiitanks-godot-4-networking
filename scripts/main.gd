@@ -49,6 +49,13 @@ func _on_buttonhost_pressed():
 			add_player_character(new_peer_id)
 	)
 
+func _on_buttonspawnball_pressed():
+	
+	# instantiate a ball object in the main scene
+	var ball_object := preload("res://scenes/ball.tscn").instantiate()
+	
+	
+	add_child(ball_object)
 
 func _on_buttonjoin_pressed():
 	
@@ -90,4 +97,7 @@ func add_newly_connected_player_character(new_peer_id: int) -> void:
 func add_previously_connected_player_characters(peer_ids: Array) -> void:
 	for peer_id in peer_ids:
 		add_player_character(peer_id)
+
+
+
 

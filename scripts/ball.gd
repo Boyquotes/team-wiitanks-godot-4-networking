@@ -16,7 +16,7 @@ func _ready():
 	position = Vector2(viewport_x * random.randf(), viewport_y * random.randf())
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	# move in a sinusoidal fashion along the x axis
 	var msecs:int = Time.get_ticks_msec();
 	#var new_pos:float = sin(msecs / period) * amplitude
